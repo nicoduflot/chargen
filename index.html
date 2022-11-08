@@ -4,9 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>RPG utils</title>
-	<link rel="stylesheet" href="css/charGenScreen.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<script src="js/collections.js"></script>
+	<link rel="stylesheet" href="css/charGenScreen.css">
 	<script src="js/script.js"></script>
 	<script src="js/miseEnPlace.js"></script>
 	<script>
@@ -16,6 +15,7 @@
 			let esprit = qS('#esprit');
 			let ethnie = qS('#ethnie');
 			let archetype = qS('#archetype');
+			let print = qS('button.print');
 			corps.addEventListener('change', () => {
 				esprit.value = 8 - corps.value;
 				initPage();
@@ -30,17 +30,27 @@
 			archetype.addEventListener('change', () => {
 				initPage();
 			});
+			print.addEventListener('click', ()=>{
+				if('' !== qS('#charName').value){
+					setCookie('heroName', qS('#charName').value, 1);
+					setCookie('genre', qS('#genre').value, 1);
+					sendToPrint();
+				}else{
+					alert('Le nom du personnage est vide');
+				}
+			});
+
 		});
 	</script>
 </head>
 
 <body>
 	<header class="row justify-content-center align-middle">
-		<h1 class="col-md-6 text-center pt-5">Les quêtes de Lumiyard</h1>
+		<h1 class="col-md-10 text-center pt-5">Les quêtes de Lumiyard</h1>
 	</header>
 	<nav class="container">
 		<p>
-			<button class="button print">Print</button><button class="button reset">Reset Character</button>
+			<button class="btn btn-secondary print">Print</button> <button class="btn btn-secondary reset">Reset Character</button>
 		</p>
 	</nav>
 	<main class="container">
@@ -76,16 +86,13 @@
 						<label class="form-label" for="charName">Nom : </label>
 					</div>
 					<div class="col-md-3 mb-1">
-						<input type="text" id="charName" value="Arnold" class="form-control" />
+						<input type="text" id="charName" placeholder="Arnold - Brigitte" class="form-control" />
 					</div>
 					<div class="col-md-3 mb-1">
 						<label class="form-label" for="genre">Sexe : </label>
 					</div>
 					<div class="col-md-3 mb-1">
-						<select name="genre" id="genre" class="form-select">
-							<option value="homme">Homme</option>
-							<option value="femme">Femme</option>
-						</select>
+						<input type text name="genre" id="genre" class="form-control" placeholder="Homme - Femme - Autre">
 					</div>
 				</div>
 				<div class="row">
@@ -122,104 +129,122 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3 mb-1">
+					<div class="col-md-2 mb-1">
 						<label for="corps" class="form-label">
 							Corps : 
 						</label>
 					</div>
-					<div class="col-md-3 mb-1">
+					<div class="col-md-2 mb-1">
 						<input type="number" name="corps" id="corps" value="4" min="1" max="7" class="form-control">
 					</div>
-					<div class="col-md-3 mb-1">
+					<div class="col-md-2 mb-1">
 						<label for="esprit" class="form-label">
 							Esprit : 
 						</label>
 					</div>
-					<div class="col-md-3 mb-1">
+					<div class="col-md-2 mb-1">
 						<input type="number" name="esprit" id="esprit" value="4" min="1" max="7" class="form-control">
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 mb-1">
+					<div class="col-6 col-md-2 mb-1">
 						<label class="form-label">
 							Mouvement : 
 						</label>
 					</div>
-					<div class="col-md-3 mb-1" id="mouvement">
+					<div class="col-6 col-md-2 mb-1" id="mouvement">
 						
 					</div>
 				</div>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td colspan="2">
-								Corps
-							</td>
-							<td colspan="2">
-								
-							</td>
-							<td colspan="2">
-								Esprit
-							</td>
-							<td colspan="2">
-								
-							</td>
-							<td colspan="3">Mouvement</td>
-							<td colspan="4" id="mouvement"></td>
-						</tr>
-						<tr>
-							<td colspan="2">
+				<div class="row">
+					<div class="col-md-6 row">
+						<div class="col-12">
+							<label class="form-label">
+								Description : 
+							</label>
+						</div>
+						<div class="col-12" id="ethnieChart">
+
+						</div>
+					</div>
+					<div class="col-md-6 row">
+						<div class="col-6 col-md-3">
+							<label class="form-label">
 								PV
-							</td>
-							<td id="pvChart" colspan="2"></td>
-							<td colspan="2">
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="pvChart">
+
+						</div>
+						<div class="col-6 col-md-3">
+							<label class="form-label">
 								Mana
-							</td>
-							<td id="manaChart" colspan="2"></td>
-							<td colspan="7">Description :</td>
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td>Dg Cac</td>
-							<td>K.O.</td>
-							<td colspan="2"></td>
-							<td>Dg dist </td>
-							<td>Actions</td>
-							<td id="ethnieChart" colspan="7" rowspan="11"></td>
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td id="dgCac"></td>
-							<td id="ko"></td>
-							<td></td>
-							<td id="dgDist" colspan="2"></td>
-							<td id="actions"></td>
-						</tr>
-						<tr>
-							<td colspan="8">Sort automatique :</td>
-						</tr>
-						<tr>
-							<td colspan="8" id="listeSorts"></td>
-						</tr>
-						<tr>
-							<td colspan="8">Armes :</td>
-						</tr>
-						<tr>
-							<td colspan="7">Nom</td>
-							<td colspan="1">Dégâts</td>
-						</tr>
-						<tr>
-							<td colspan="7" id="nomArme"></td>
-							<td colspan="1" id="degatArme"></td>
-						</tr>
-						<tr>
-							<td colspan="8">Sac :</td>
-						</tr>
-						<tr>
-							<td colspan="8" id="sacPerso"></td>
-						</tr>
-					</tbody>
-				</table>
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="manaChart">
+
+						</div>
+						<div class="col-6 col-md-3">
+							<label class="form-label">
+								Dg CaC : 
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="dgCac">
+							
+						</div>
+						<div class="col-6 col-md-3">
+							<label class="form-label">
+								KO : 
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="ko">
+
+						</div>
+						<div class="col-6 col-md-3">
+							<label class="form-label">
+								Dg Dist : 
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="dgDist">
+							
+						</div>
+						<div class="col-6 col-md-3">
+							<label class="form-label">
+								Actions : 
+							</label>
+						</div>
+						<div class="col-6 col-md-3" id="actions">
+
+						</div>
+						<div class="col-md-12">
+							<label class="form-label">
+								Sort(s) Automatique(s) :
+							</label>
+						</div>
+						<div class="col-md-12" id="listeSorts">
+
+						</div>
+						<div class="col-12">
+							<label class="form-label">
+								Armes :
+							</label>
+						</div>
+						<div class="col-10" id="nomArme">
+							
+						</div>
+						<div class="col-2" id="degatArme">
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<label class="form-label">
+							Sac :
+						</label>
+					</div>
+					<div class="col-12" id="sacPerso">
+						
+					</div>
+				</div>
 			</article>
 		</section>
 	</main>

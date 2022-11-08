@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CodexGigas';
+    src: url('../fonts/CodexGigas.eot');
+    src: url('../fonts/CodexGigas.eot') format('embedded-opentype'),
+         url('../fonts/CodexGigas.woff2') format('woff2'),
+         url('../fonts/CodexGigas.woff') format('woff'),
+         url('../fonts/CodexGigas.ttf') format('truetype'),
+         url('../fonts/CodexGigas.svg#CodexGigas') format('svg');
+}

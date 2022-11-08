@@ -112,11 +112,15 @@ function setSortAutomatique(lesSorts){
     let listeSort = '';
     //console.log(lesSorts);
     for(key in lesSorts){
-        listeSort = listeSort + `<b>${lesSorts[key].nomSort} : </b>`;
+        listeSort = listeSort + `<ul><li><b>${lesSorts[key].nomSort} : </b>`;
 		listeSort = listeSort +` <i><small>${lesSorts[key].coutSort}</small></i><br />`;
-		listeSort = listeSort + `&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;${lesSorts[key].descriptionSort}<br />`;	
+		listeSort = listeSort + `${lesSorts[key].descriptionSort}</li></ul>`;	
     }
     return listeSort;
+}
+
+function sendToPrint(){
+	window.open('charPrint.html', '_blank');
 }
 
 function initChar(ethnies, profils, armes, sorts, equipements) {
@@ -135,8 +139,6 @@ function initChar(ethnies, profils, armes, sorts, equipements) {
     let dgTir = setDeg(esprit.value);
     let actions = calcActions(corps.value);
     let bonusAutre = '';
-    let bonusMana = '';
-    let ethnieAff = '';
     for (key in ethnies) {
         if (key === selectedEthnie.value) {
             bonusAutre = ethnies[key].bonusAutre;
@@ -149,13 +151,13 @@ function initChar(ethnies, profils, armes, sorts, equipements) {
     let listeSorts = null;
     for (key in profils) {
         if (key === selectedarchetype.value) {
-            //console.log(profils[key].arme);
             bonusAutre = bonusAutre + `${profils[key].description}`;
             arme = setArmes(profils[key].arme);
             sac = setSac(profils[key].sac);
             listeSorts = setSortAutomatique(profils[key].sortAutomatique);
         }
     }
+
     /*
     console.log('ethnie : ', selectedEthnie.value);
     console.log('archetype : ', selectedarchetype.value);
@@ -175,6 +177,9 @@ function initChar(ethnies, profils, armes, sorts, equipements) {
     console.log('sac : ', sac);
     console.log('listeSorts : ', listeSorts);
     */
+   /**
+    * ajout des informations à la feuille
+    */
     qS('#pvChart').innerHTML = pv;
     qS('#manaChart').innerHTML = mana;
     qS('#mouvement').innerHTML = mouvement + ' cases';
@@ -187,13 +192,32 @@ function initChar(ethnies, profils, armes, sorts, equipements) {
     qS('#degatArme').innerHTML = arme[1];
     qS('#sacPerso').innerHTML = sac;
     qS('#listeSorts').innerHTML = listeSorts;
-
+    
     /**
      * 
-     * mise en chache cookie les informations du personnage pour pouvoir gérer l'impression
+     * mise en cache cookie les informations du personnage pour pouvoir gérer l'impression
      * de la fiche personnage
      * 
      */
+    setCookie('heroName', qS('#charName').value, 1);
+    setCookie('ethnieAff', selectedEthnie.value, 1);
+	setCookie('archetype', selectedarchetype.value, 1);
+	setCookie('corps', corps.value, 1);
+    setCookie('esprit', esprit.value, 1);
+    setCookie('genre', genre.value, 1);
+    setCookie('mouvement', mouvement, 1);
+	setCookie('pvChar', pv, 1);
+	setCookie('manaChar', mana, 1);
+	setCookie('dgCac', dgCaC, 1);
+	setCookie('dgDist', dgTir, 1);
+	setCookie('ko', KO, 1);
+	setCookie('nbActions', actions, 1);
+	setCookie('nomArmes', arme[0], 1);
+	setCookie('degatArme', arme[1], 1);
+	setCookie('sacPerso', sac, 1);
+	setCookie('listeSorts', listeSorts, 1);
+	setCookie('ethnieChart', bonusAutre, 1);
+
 
 }
 

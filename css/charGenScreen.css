@@ -16,10 +16,21 @@
 
 h1{
     font-family: 'MedievalSharp';
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 
 body > header{
     height: 150px;
 }
+
+article label{
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    h1{
+        font-family: 'MedievalSharp';
+        font-size: 3rem;
+    }
+  }

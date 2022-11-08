@@ -12,8 +12,8 @@
 
 body { /* Modifications : la couleur de fond de page - la police - l'unité utilisée pour la taille de la police  */
     background-color: #fff;
-    font-family: 'Medula One', cursive;
-    font-size: 16pt;
+    font-family: 'CodexGigas', cursive;
+    font-size: 14pt;
 }
 
 #page { /* Modifications : suppression de la bordure - marges */
@@ -62,10 +62,10 @@ a { /* Empèche le souligné par défaut du titre h1 */
         text-decoration: none;
     }
 
-p { /* Modifications : alignement du texte - marges - unité des marges, police et taille de la police */
+p, td { /* Modifications : alignement du texte - marges - unité des marges, police et taille de la police */
     text-align: justify;
     margin: 2pt 1pt 6pt 0;
-    font-size: 14pt;
+    font-size: 11pt;
     color: #000;
 }
 
@@ -78,7 +78,7 @@ p { /* Modifications : alignement du texte - marges - unité des marges, police 
 }
 
     #contenu h3 { /* Modifications : marges - unité des marges, police et taille de la police */
-        font-size: 15pt;
+        font-size: 13pt;
         font-weight: bold;
         margin: 10pt 0 5pt 0;
     }
@@ -138,16 +138,16 @@ img { /* Modifications : couleur de la bordure - unités et marges */
 .description {
     width: 8cm;
     font-style: italic;
-    padding: 1mm;
+    padding: 3mm;
     vertical-align: top;
     font-size: small;
 }
 
 .description-autre {
     width: 8cm;
-    padding: 1mm;
+    padding: 3mm;
     vertical-align: top;
-    font-size: 14pt;
+    font-size: 11t;
 }
 
 .livre-de-sort, .notes {
