@@ -23,7 +23,7 @@ function qSAll(selector) {
  */
  function setCookie(name, value = '', days = -1) {
     let maxAge = days * 24 * 60 * 60;
-    document.cookie = `${name}=${value}; max-age=${maxAge}; Samesite=Strict; Secure`;
+    document.cookie = `${name}=${value}; max-age=${maxAge}; Samesite=Strict`;
 }
 
 /* récupérer un cookie s'il existe */

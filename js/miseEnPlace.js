@@ -223,7 +223,7 @@ function initChar(ethnies, profils, armes, sorts, equipements) {
 
 function initPage() {
     //console.log('lancement requête data');
-    fetch('../ressources/data-gen.json')
+    fetch('./ressources/data-gen.json')
     .then(response => {
         return response.json();
     }).then(data => {
