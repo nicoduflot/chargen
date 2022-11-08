@@ -1,0 +1,159 @@
+/* Tuto Alsacreations : Faites bonne impression - Feuille styles css imprimante */
+
+@font-face {
+    font-family: "Medula One";
+    src: url('../font/MedulaOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: "MedievalSharp";
+    src: url('../font/MedievalSharp.ttf');
+}
+
+body { /* Modifications : la couleur de fond de page - la police - l'unité utilisée pour la taille de la police  */
+    background-color: #fff;
+    font-family: 'Medula One', cursive;
+    font-size: 16pt;
+}
+
+#page { /* Modifications : suppression de la bordure - marges */
+    margin: 0;
+    border: none;
+}
+
+#banner, #menuright, #footer { /* Les éléments qui ne seront pas affichés  */
+    display: none;
+}
+
+h1#top { /* Affichage du titre */
+    font-family: 'MedievalSharp', cursive;
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    line-height: 25pt;
+    font-size: 25pt;
+}
+
+h2#top { /* Affichage du sous-titre */
+    font-family: 'MedievalSharp', cursive;
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    line-height: 18pt;
+    font-size: 18pt;
+}
+
+h2, h3, #contenu h3, #contenu a, a { /* Modification de la couleur des titres et liens */
+    color: #000;
+}
+
+h2 { /* Modifications : marges - police - couleur du souligné */
+    padding-bottom: 2pt;
+    padding-left: 0;
+    font: bold 20pt Serif;
+    /*border-bottom: 1pt solid #000;*/
+}
+
+a { /* Empèche le souligné par défaut du titre h1 */
+    text-decoration: none;
+}
+
+    a:hover { /* Suppression du souligné */
+        text-decoration: none;
+    }
+
+p { /* Modifications : alignement du texte - marges - unité des marges, police et taille de la police */
+    text-align: justify;
+    margin: 2pt 1pt 6pt 0;
+    font-size: 14pt;
+    color: #000;
+}
+
+#contenu { /* Modifications : suppression du float - adaptation de la largeur*/
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+    #contenu h3 { /* Modifications : marges - unité des marges, police et taille de la police */
+        font-size: 15pt;
+        font-weight: bold;
+        margin: 10pt 0 5pt 0;
+    }
+
+    #contenu a { /* Modifications : suppression du gras et du souligné */
+        font-weight: normal;
+        text-decoration: none;
+    }
+
+img { /* Modifications : couleur de la bordure - unités et marges */
+    float: left;
+    margin: 3pt 6pt 3pt 6pt;
+    padding: 8pt;
+    background: #fff;
+    border: 1pt solid #000;
+}
+
+    img.droite {
+        float: right;
+    }
+
+#fichePersoTable table {
+    width: 18cm;
+    /*border: 1px solid #000000;*/
+    page-break-after: always;
+}
+
+.carac {
+    width: 1cm;
+}
+
+.tr-separation {
+    height: 1cm;
+}
+
+.center {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.border {
+    border: 1px solid #000000;
+}
+
+.border-dashed {
+    border: 1px dashed #000000;
+}
+
+.border-dashed-bottom {
+    border-bottom: 1px dashed #000000;
+}
+
+.padding-left {
+    padding-left: 3mm;
+}
+
+.description {
+    width: 8cm;
+    font-style: italic;
+    padding: 1mm;
+    vertical-align: top;
+    font-size: small;
+}
+
+.description-autre {
+    width: 8cm;
+    padding: 1mm;
+    vertical-align: top;
+    font-size: 14pt;
+}
+
+.livre-de-sort, .notes {
+    height: 11.5cm;
+}
+
+fieldset input[type="number"] {
+    width: 50px;
+}

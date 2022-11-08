@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<title>RPG utils</title>
+	<link rel="stylesheet" href="css/charGenScreen.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="js/collections.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/miseEnPlace.js"></script>
+	<script>
+		loaded(function () {
+			initPage();
+			let corps = qS('#corps');
+			let esprit = qS('#esprit');
+			let ethnie = qS('#ethnie');
+			let archetype = qS('#archetype');
+			corps.addEventListener('change', () => {
+				esprit.value = 8 - corps.value;
+				initPage();
+			});
+			esprit.addEventListener('change', () => {
+				corps.value = 8 - esprit.value;
+				initPage();
+			});
+			ethnie.addEventListener('change', () => {
+				initPage();
+			});
+			archetype.addEventListener('change', () => {
+				initPage();
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<header class="row justify-content-center align-middle">
+		<h1 class="col-md-6 text-center pt-5">Les quêtes de Lumiyard</h1>
+	</header>
+	<nav class="container">
+		<p>
+			<button class="button print">Print</button><button class="button reset">Reset Character</button>
+		</p>
+	</nav>
+	<main class="container">
+		<section class="row">
+			<article class="col">
+				<h2>Générateur de personnage</h2>
+				<p>
+					En sélectionnant les divers attributs et compétences du personnage une fiche est créée sur le
+					côté.<br />
+					<b>Attention : </b><i>Votre navigateur doit accepter les cookies et javascript pour que
+						le
+						générateur fonctionne</i>
+				</p>
+				<p>
+					Utilisation : il suffit de sélectionner les paramètres tel que le corps et l'esprit en augmentant ou
+					baissant la valeur.
+				</p>
+				<p>
+					Une fois que le personnage correspond à votre envie, il suffit de cliquer sur 'Print'. une nouvelle
+					fenêtre s'ouvrira et il suffira de lancer l'aperçut avant impression afin de voir à quoi ressemblera
+					la
+					fiche.
+				</p>
+				<p>
+					<b>Attention : </b><i>N'oubliez pas de changer le nom de votre personnage ou il
+						s'appellera
+						Arnold. Vous pouvez simplement changer un élément sur la page de génération et recharger la page
+						de
+						print, les modifications seront appliquées.</i>
+				</p>
+				<div class="row">
+					<div class="col-md-3 mb-1">
+						<label class="form-label" for="charName">Nom : </label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<input type="text" id="charName" value="Arnold" class="form-control" />
+					</div>
+					<div class="col-md-3 mb-1">
+						<label class="form-label" for="genre">Sexe : </label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<select name="genre" id="genre" class="form-select">
+							<option value="homme">Homme</option>
+							<option value="femme">Femme</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 mb-1">
+						<label for="ethnie" class="form-label">
+							Ethnie : 
+						</label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<select name="ethnie" id="ethnie" class="form-select">
+							<option value="humain">Humain</option>
+							<option value="elfeHN">Elfe haut-né</option>
+							<option value="elfeArbo">Elfe arboricole</option>
+							<option value="elfeNoc">Elfe Nocturne</option>
+							<option value="nain">Nain</option>
+							<option value="orc">Orc</option>
+						</select>
+					</div>
+					<div class="col-md-3 mb-1">
+						<label for="archetype" class="form-label">
+							Archétype : 
+						</label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<select name="archetype" id="archetype" class="form-select">
+							<option value="barbare">Barbare</option>
+							<option value="guerrier">Guerrier</option>
+							<option value="chasseur">Chasseur</option>
+							<option value="magicien">Magicien</option>
+							<option value="filou">Filou</option>
+							<option value="druide">Druide / Shaman</option>
+							<option value="marchand">Marchand</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 mb-1">
+						<label for="corps" class="form-label">
+							Corps : 
+						</label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<input type="number" name="corps" id="corps" value="4" min="1" max="7" class="form-control">
+					</div>
+					<div class="col-md-3 mb-1">
+						<label for="esprit" class="form-label">
+							Esprit : 
+						</label>
+					</div>
+					<div class="col-md-3 mb-1">
+						<input type="number" name="esprit" id="esprit" value="4" min="1" max="7" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 mb-1">
+						<label class="form-label">
+							Mouvement : 
+						</label>
+					</div>
+					<div class="col-md-3 mb-1" id="mouvement">
+						
+					</div>
+				</div>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td colspan="2">
+								Corps
+							</td>
+							<td colspan="2">
+								
+							</td>
+							<td colspan="2">
+								Esprit
+							</td>
+							<td colspan="2">
+								
+							</td>
+							<td colspan="3">Mouvement</td>
+							<td colspan="4" id="mouvement"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								PV
+							</td>
+							<td id="pvChart" colspan="2"></td>
+							<td colspan="2">
+								Mana
+							</td>
+							<td id="manaChart" colspan="2"></td>
+							<td colspan="7">Description :</td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+							<td>Dg Cac</td>
+							<td>K.O.</td>
+							<td colspan="2"></td>
+							<td>Dg dist </td>
+							<td>Actions</td>
+							<td id="ethnieChart" colspan="7" rowspan="11"></td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+							<td id="dgCac"></td>
+							<td id="ko"></td>
+							<td></td>
+							<td id="dgDist" colspan="2"></td>
+							<td id="actions"></td>
+						</tr>
+						<tr>
+							<td colspan="8">Sort automatique :</td>
+						</tr>
+						<tr>
+							<td colspan="8" id="listeSorts"></td>
+						</tr>
+						<tr>
+							<td colspan="8">Armes :</td>
+						</tr>
+						<tr>
+							<td colspan="7">Nom</td>
+							<td colspan="1">Dégâts</td>
+						</tr>
+						<tr>
+							<td colspan="7" id="nomArme"></td>
+							<td colspan="1" id="degatArme"></td>
+						</tr>
+						<tr>
+							<td colspan="8">Sac :</td>
+						</tr>
+						<tr>
+							<td colspan="8" id="sacPerso"></td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+	</main>
+	<footer>
+	</footer>
+</body>
+
+</html>

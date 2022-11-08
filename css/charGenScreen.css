@@ -1,0 +1,25 @@
+
+@font-face {
+    font-family: "Medula One";
+    src: url('../font/MedulaOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: "MedievalSharp";
+    src: url('../font/MedievalSharp.ttf');
+}
+
+:root{
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+}
+
+h1{
+    font-family: 'MedievalSharp';
+    font-size: 3rem;
+}
+
+
+body > header{
+    height: 150px;
+}

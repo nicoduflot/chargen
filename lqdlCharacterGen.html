@@ -1,0 +1,176 @@
+﻿<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>RPG utils</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/ecran.css">
+		<script src="js/collections.js"></script>
+		<script src="js/functions.js"></script>
+		<script src="js/charGen.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Les quêtes de Lumiyard</h1>
+		</header>
+		<nav>
+		</nav>
+		<div id="wrapper">
+			<section>
+				<article style="border:0">
+					<h1>Générateur de personnage</h1>
+					<p>
+						En sélectionnant les divers attributs et compétences du personnage une fiche est créée sur le côté.<br />
+                        <strong>Attenyion : </strong><em>Votre navigateur doit accepter les cookies et javascript pour que le générateur fonctionne</em>
+					</p>
+                    <p>
+                        Utilisation : il suffit de sélectionner les paramètres tel que le corps et l'esprit en augmentant ou baissant la valeur.
+                    </p>
+                    <p>
+                        Une fois que le personnage correspond à votre envie, il suffit de cliquer sur 'Print'. une nouvelle fenêtre s'ouvrira et il suffira de lancer l'aperçut avant impression afin de voir à quoi ressemblera la fiche.
+                    </p>
+                    <p>
+                        <strong>Attention : </strong><em>N'oubliez pas de changer le nom de votre personnage ou il s'appellera Arnold. Vous pouvez simplement changer un élément sur la page de génération et recharger la page de print, les modifications seront appliquées.</em>
+                    </p>
+					<p>
+						<button class="button" onclick="sendToPrint()">Print</button><button class="button" onclick="resetChar()">Reset Character</button>
+					</p>
+					<div id="relicTable">
+						<table>
+							<tbody>
+								<tr>
+									<td colspan="2">Nom</td>
+									<td colspan="2"><input type="text" id="charName" value="Arnold"></td>
+									<td colspan="2">Sexe</td>
+									<td colspan="2">
+										<select name="genre" id="genre" >
+											<option value="homme">Homme</option>
+											<option value="femme">Femme</option>
+										</select>
+									</td>
+									<td colspan="2">Ethnie</td>
+									<td colspan="2">
+										<select name="ethnie" id="ethnie" onchange="changeCarac('corps')">
+											<option value="humain">Humain</option>
+											<option value="elfeHN">Elfe haut-né</option>
+											<option value="elfeArbo">Elfe arboricole</option>
+											<option value="elfeNoc">Elfe Nocturne</option>
+											<option value="nain">Nain</option>
+											<option value="orc">Orc</option>
+										</select>
+									</td>
+									<td colspan="2">
+										Archétype
+									</td>
+									<td colspan="2">
+										<select name="archetype" id="archetype" onchange="changeCarac('corps')">
+											<option value="barbare">Barbare</option>
+											<option value="guerrier">Guerrier</option>
+											<option value="chasseur">Chasseur</option>
+											<option value="magicien">Magicien</option>
+											<option value="filou">Filou</option>
+											<option value="druide">Druide / Shaman</option>
+											<option value="marchand">Marchand</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										Corps
+									</td>
+									<td colspan="2">
+										<input type="number" name="corps" id="corps" value="4" min="1" max="7" onchange="changeCarac('corps')">
+									</td>
+									<td colspan="2">
+										Esprit
+									</td>
+									<td colspan="2">
+										<input type="number" name="esprit" id="esprit" value="4" min="1" max="7" onchange="changeCarac('esprit')">
+									</td>
+                                    <td colspan="3">Mouvement</td>
+                                    <td colspan="4" id="mouvement"></td>
+								</tr>
+                                <tr>
+                                    <td colspan="2">
+                                        PV
+                                    </td>
+                                    <td id="pvChart" colspan="2"></td>
+                                    <td colspan="2">
+                                        Mana
+                                    </td>
+                                    <td id="manaChart" colspan="2"></td>
+                                    <td colspan="7">Description :</td>
+                                </tr>
+								<tr>
+									<td colspan="2"></td>
+									<td>Dg Cac</td>
+									<td>K.O.</td>
+									<td colspan="2"></td>
+									<td>Dg dist </td>
+									<td>Actions</td>
+                                    <td id="ethnieChart" colspan="7" rowspan="11"></td>
+								</tr>
+								<tr>
+									<td colspan="2"></td>
+									<td id="dgCac"></td>
+									<td id="ko"></td>
+									<td></td>
+									<td id="dgDist" colspan="2"></td>
+									<td id="actions"></td>
+								</tr>
+								<tr>
+									<td colspan="8">Sort automatique :</td>
+								</tr>
+								<tr>
+									<td colspan="8" id="listeSorts"></td>
+								</tr>
+								<tr>
+									<td colspan="8">Armes :</td>
+								</tr>
+								<tr>
+									<td colspan="7">Nom</td>
+									<td colspan="1">Dégâts</td>
+								</tr>
+								<tr>
+									<td colspan="7" id="nomArme"></td>
+									<td colspan="1" id="degatArme"></td>
+								</tr>
+								<tr>
+									<td colspan="8">Sac :</td>
+								</tr>
+								<tr>
+									<td colspan="8" id="sacPerso"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="weaponShop" width="50%" style="float:left">
+						
+					</div>
+					<div id="weaponOfChoice" width="50%">
+						
+					</div>
+					<div style="clear:both"></div>
+					<div id="hexShop" width="50%" style="float:left">
+						
+					</div>
+					<div id="hexOfChoice" width="50%">
+						
+					</div>
+					<div style="clear:both"></div>
+					<div id="equipShop" width="50%" style="float:left">
+						
+					</div>
+					<div id="equipOfChoice" width="50%">
+						
+					</div>
+				</article>
+			</section>
+		</div>
+		<footer>
+		</footer>
+		<script>
+			initChart();
+		</script>
+	</body>
+</html>
